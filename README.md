@@ -18,8 +18,8 @@ Now to measure the length of the ECHO signal, we first tried to use TimerA Captu
 
 
 # Schematics
+![Settings Window](https://raw.github.com/bdhkim/Microprocessor/master/Screenshots/Schematics.png)
 
-![Alt text](/relative/path/to/Schematics.png?raw=true "Schematics")
 
 Note that MSP432 supplies both the 5 volts and 3.3 volts. However, the output pins can only generate 3.3 volts, so a logic level converter has to be used. In our schematics, the green lines show the 5 volts connection, and the yellow lines show the 3.3 volts.  Also note that the echo line splits into two to connect to P1.0 and P2.2, one for rising edge and the other for falling edge. 
 
