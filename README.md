@@ -7,8 +7,12 @@
 # Goal and Design of the project
 The goal of this project was to build a system that would measure the distance of a near object and the rate of change in distance. We also aimed to display both of those data for the user. To accomplish this goal, we designed our MSP432 board to connect to an ultrasonic chip (HC-SR04) that would allow us to measure how far or close an object in centimeters and inches.  
 
+![Settings Window](https://raw.github.com/bdhkim/Microprocessor/master/Screenshots/Illustration.png)
+
 # Description of system level and component level interaction
 In order to first connect the ultrasonic chip to MSP432, we had to match the voltage levels of these devices; MSP432 works with 3.3 volts, whereas the ultrasonic chip works with 5 volts. To match the voltage levels, we used a bi-directional logic level converter (BOB-12009), which required a 6-pin header. A small problem arose here where the level converter seemed not to be working because it was not touching the header. This problem was solved by soldering the 6-pin header to the level converter so that they would be completely connected. The way the ultrasonic chip works is that once it receives a trigger signal from the MSP432 board, ultrasonic chip sends 8 cycles of 40KHz ultrasound wave to the environment; after the 8th cycle, the echo signal become HI, and it stays HI until the ultrasound wave comes back. Knowing this process, our challenge was to first trigger a pulse and accurately measure the length of the echo pulse. 
+
+![Settings Window](https://raw.github.com/bdhkim/Microprocessor/master/Screenshots/Demo.png)
 
 To trigger a 15 micro-second pulse (greater than 10 micro-second pulse was enough according to the data sheet), we first tried to use Watchdog Timer, but WDT gave a pulse only every 800 milli-second, which was too long to obtain frequent samples. As a result, to be able to generate pulse at every 100 milli-second, we opted for Timer A, which better handles PWM signals. We chose to send a pulse at every 100 milli-second because the data sheet suggested to use greater than 60 milli-second in order to prevent echo and trigger signals from overlapping. We connected P3.6 to the LO side of the level converter, and the HI to the trigger pin of the HC-SR04. 
 
