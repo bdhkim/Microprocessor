@@ -1,5 +1,23 @@
-#include "msp.h"
+/*
+ * EC 450 HW 3
+ * Dong Hyun Kim
+ * U68030607
+ * This stores an array of 'notes,' which are just different values of frequencies as shown in the commented list
+ * 
+ * There are two different buttons from the GPIO pins that toggle the song or change the speed of the song. 
+ * This is done by the interrup handlers, which are constantly checking for changes in the state within the main function.  
+ * Namely, Port 3 toggles the song, and Port 5 changes the speed of the song. 
+ *
+ * The main song is Bellacio, which will be played by default, and the other song is my all-time favorite, For Elise. 
+ *
+ *
+ * As a side note, debouncing should be resolved! 
+ *
+ */
 
+
+
+#include "msp.h"
 
 #define BUTTON_PORT P5
 #define BUTTON_BIT  BIT1
